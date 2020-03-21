@@ -1,5 +1,7 @@
 import os
 from read_file.from_shp import from_shp
+from read_file.from_geojson import from_geojson
+
 valid_formats = ["shapefile", "geojson"]
 valid_extensions = [".shp", ".geojson"]
 
