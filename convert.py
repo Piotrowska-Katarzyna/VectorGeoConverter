@@ -5,6 +5,8 @@ from read_file.from_geojson import from_geojson
 from read_file.from_csv import from_csv
 from write_file.to_geojson import to_geojson
 from write_file.to_shapefile import to_shapefile
+from read_file.from_gml import from_gml
+from write_file.to_gml import to_gml
 
 from write_file.to_csv import to_csv
 
@@ -21,6 +23,8 @@ def convert(file, target_format, x = None, y = None):
         if file_extension == ".csv":
             if x != None or y != None:
                 gdf = from_csv(file, x, y)
+        if file_extension == ".gml":
+            gdf = from_gml(file)
 
         if target_format == "csv":
             to_csv(gdf, filename)
@@ -28,6 +32,8 @@ def convert(file, target_format, x = None, y = None):
             to_geojson(gdf, filename)
         if target_format == "shapefile":
             to_shapefile(gdf,filename)
-            
+        if target_format == "gml":
+            to_gml(gdf, filename) 
+
     else:
         print("niepoprawne dane wejściowe")
