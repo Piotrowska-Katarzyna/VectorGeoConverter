@@ -6,6 +6,8 @@ from read_file.from_geojson import from_geojson
 from write_file.to_geojson import to_geojson
 
 from write_file.to_shapefile import to_shapefile
+from read_file.from_gml import from_gml
+from write_file.to_gml import to_gml
 
 valid_formats = ["shapefile", "geojson"]
 valid_extensions = [".shp", ".geojson"]
@@ -19,6 +21,10 @@ def convert(file, target_format):
             to_geojson(gdf, filename)
         if target_format == "shapefile":
             to_shapefile(gdf,filename)
+        if file_extension == ".gml":
+            gdf = from_gml(file)
+        if target_format == "gml":
+            to_gml(gdf, filename) 
     else:
         print("niepoprawne dane wejściowe")
 
