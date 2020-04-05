@@ -10,8 +10,8 @@ from write_file.to_shapefile import to_shapefile
 from write_file.to_geopackage import to_geopackage
 from write_file.to_gml import to_gml
 
-valid_formats = ["shapefile", "geojson", "geopackage"]
-valid_extensions = [".shp", ".geojson", ".gpkg"]
+valid_formats = ["shapefile", "geojson", "geopackage", "csv"]
+valid_extensions = [".shp", ".geojson", ".gpkg", ".csv"]
 
 def convert(file, target_format, x = None, y = None):
     filename, file_extension = os.path.splitext(file)
@@ -23,7 +23,7 @@ def convert(file, target_format, x = None, y = None):
         if file_extension == ".gpkg":
             gdf = from_geopackage(file)
         if file_extension == ".csv":
-            if x != None or y != None:
+             if x != None and y != None: #and czy or?
                 gdf = from_csv(file, x, y)
         if file_extension == ".gml":
             gdf = from_gml(file)
