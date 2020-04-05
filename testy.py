@@ -1,3 +1,7 @@
 from convert import convert
+import os
 
-convert("plik.shp", "geojson")
+dir = os.getcwd()
+os.chdir(dir + "\\dane_wejsc")
+
+convert("Państwo.shp", "geopackage")
