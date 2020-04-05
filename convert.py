@@ -3,14 +3,16 @@ import os
 from read_file.from_shp import from_shp
 from read_file.from_geojson import from_geojson
 from read_file.from_csv import from_csv
-from read_file.from_csv import from_geopackage
+from read_file.from_gml import from_gml
+from read_file.from_topojson import from_topojson
+from read_file.from_geopackage import from_geopackage
+
 from write_file.to_geojson import to_geojson
 from write_file.to_shapefile import to_shapefile
 from write_file.to_geopackage import to_geopackage
-from read_file.from_gml import from_gml
 from write_file.to_gml import to_gml
-
 from write_file.to_csv import to_csv
+from write_file.to_topojson import to_topojson
 
 
 valid_formats = ["shapefile", "geojson", "csv", "geopackage"]
@@ -31,8 +33,7 @@ def convert(file, target_format, x = None, y = None):
         if file_extension == ".gml":
             gdf = from_gml(file)
         if file_extension == ".topojson":
-            if (type) = None && coordinateX = None && coordinateY:
-                gdf = from_topojson(file)
+            gdf = from_topojson(file)
 
         if target_format == "csv":
             to_csv(gdf, filename)
