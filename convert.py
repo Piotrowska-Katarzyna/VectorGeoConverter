@@ -10,8 +10,8 @@ from write_file.to_gml import to_gml
 
 from write_file.to_csv import to_csv
 
-valid_formats = ["shapefile", "geojson", "csv"]
-valid_extensions = [".shp", ".geojson", ".csv"]
+valid_formats = ["shapefile", "geojson", "csv", "gml"]
+valid_extensions = [".shp", ".geojson", ".csv", ".gml"]
 
 def convert(file, target_format, x = None, y = None):
     filename, file_extension = os.path.splitext(file)
@@ -37,3 +37,4 @@ def convert(file, target_format, x = None, y = None):
 
     else:
         print("niepoprawne dane wejściowe")
+
