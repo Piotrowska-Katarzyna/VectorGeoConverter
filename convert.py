@@ -29,6 +29,9 @@ def convert(file, target_format, x = None, y = None):
                 gdf = from_csv(file, x, y)
         if file_extension == ".gml":
             gdf = from_gml(file)
+        if file_extension == ".topojson":
+            if (type) = None && coordinateX = None && coordinateY:
+                gdf = from_topojson(file)
 
         if target_format == "csv":
             to_csv(gdf, filename)
@@ -40,6 +43,8 @@ def convert(file, target_format, x = None, y = None):
             to_shapefile(gdf,filename)
         if target_format == "gml":
             to_gml(gdf, filename) 
+        if target_format == "topojson":
+            to_topojson(gdf, filename)
 
     else:
         print("niepoprawne dane wejściowe")
