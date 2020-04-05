@@ -8,6 +8,7 @@ from read_file.from_gml import from_gml
 from write_file.to_geojson import to_geojson
 from write_file.to_shapefile import to_shapefile
 from write_file.to_geopackage import to_geopackage
+from write_file.to_csv import to_csv
 from write_file.to_gml import to_gml
 
 valid_formats = ["shapefile", "geojson", "geopackage", "csv"]
