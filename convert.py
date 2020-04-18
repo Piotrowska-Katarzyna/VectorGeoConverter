@@ -18,7 +18,7 @@ from write_file.to_topojson import to_topojson
 valid_formats = ["shapefile", "geojson", "geopackage", "csv"]
 valid_extensions = [".shp", ".geojson", ".gpkg", ".csv"]
 
-def convert(file, target_format, x = None, y = None):
+def convert(file, target_format, x = None, y = None, wkt = None):
     filename, file_extension = os.path.splitext(file)
     if file_extension in valid_extensions and target_format in valid_formats:
         if file_extension == ".shp":
@@ -28,8 +28,10 @@ def convert(file, target_format, x = None, y = None):
         if file_extension == ".gpkg":
             gdf = from_geopackage(file) 
         if file_extension == ".csv":
-             if x != None and y != None: #and czy or?
+            if x != None and y != None:
                 gdf = from_csv(file, x, y)
+            elif wkt != None:
+                gdf = from_csv(file, wkt)
         if file_extension == ".gml":
             gdf = from_gml(file)
         if file_extension == ".topojson":
@@ -42,7 +44,7 @@ def convert(file, target_format, x = None, y = None):
         if target_format == "geopackage":
             to_geopackage(gdf, filename)
         if target_format == "shapefile":
-            to_shapefile(gdf,filename)
+            to_shapefile(gdf, filename)
         if target_format == "gml":
             to_gml(gdf, filename) 
         if target_format == "topojson":
