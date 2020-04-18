@@ -1,9 +1,10 @@
 import numpy as np
-import geopandas as gpd
+import shapely
 import topojson
-from shapely import geometry
+import json
 
-def from_topojson(file, type):
-    df = pd.read_file(file)
-    gdf = gpd.GeoDataFrame(df,coordinateX, coordinateY)
+
+def from_topojson(file):
+    tj = np.read_topojson(file)
+    gdf = topojson.Topology(json, tj, prequantize=False, topology=True)
     return gdf

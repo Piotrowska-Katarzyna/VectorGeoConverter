@@ -4,4 +4,4 @@ import os
 dir = os.getcwd()
 os.chdir(dir + "\\dane_wejsc")
 
-convert("Państwo.shp", "geopackage")
+convert("topojson", "topojson")
