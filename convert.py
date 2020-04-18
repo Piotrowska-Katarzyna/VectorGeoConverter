@@ -15,8 +15,8 @@ from write_file.to_gml import to_gml
 from write_file.to_csv import to_csv
 from write_file.to_topojson import to_topojson
 
-valid_formats = ["shapefile", "geojson", "geopackage", "csv"]
-valid_extensions = [".shp", ".geojson", ".gpkg", ".csv"]
+valid_formats = ["shapefile", "geojson", "geopackage", "csv", "topojson", "gml"]
+valid_extensions = [".shp", ".geojson", ".gpkg", ".csv", ".topojson", ".gml"]
 
 def convert(file, target_format, x = None, y = None, wkt = None):
     filename, file_extension = os.path.splitext(file)

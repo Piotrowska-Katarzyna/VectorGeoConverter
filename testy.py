@@ -4,4 +4,4 @@ import os
 dir = os.getcwd()
 os.chdir(dir + "\\dane_wejsc")
 
-convert("topojson", "topojson")
+convert("geojson.geojson", "topojson")
