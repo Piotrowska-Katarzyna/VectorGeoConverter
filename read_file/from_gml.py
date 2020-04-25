@@ -1,6 +1,5 @@
+import geopandas as gpd
+
 def from_gml(file):
-    """
-    gdf = nx.read_file(file)
+    gdf = gpd.read_file(file)
     return gdf
-    """
-    pass
