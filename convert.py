@@ -31,7 +31,7 @@ def convert(file, target_format, x = None, y = None, wkt = None):
             if x != None and y != None:
                 gdf = from_csv(file, x, y)
             elif wkt != None:
-                gdf = from_csv(file, wkt)
+                gdf = from_csv(file, wkt1 = wkt)
         if file_extension == ".gml":
             gdf = from_gml(file)
         if file_extension == ".topojson":

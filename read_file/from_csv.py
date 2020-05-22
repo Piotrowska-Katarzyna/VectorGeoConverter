@@ -3,13 +3,13 @@ import geopandas as gpd
 from osgeo import ogr
 from shapely import wkt
 
-def from_csv(file, x, y, wkt):
+def from_csv(file, x = None, y = None, wkt1 = None):
     df = pd.read_csv(file)
     if x is not None and y is not None:
         gdf = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df[x], df[y]))
-    elif wkt is not None:
-        df[wkt] = df[wkt].apply(wkt.loads)
-        gdf = geopandas.GeoDataFrame(df, geometry= df[wkt])
+    elif wkt1 is not None:
+        df[wkt1] = df[wkt1].apply(wkt.loads)
+        gdf = gpd.GeoDataFrame(df, geometry= df[wkt1])
     return gdf
 
 '''
@@ -42,5 +42,4 @@ def from_csv(file, x, y, wkt):
     df[wkt] = df[wkt].apply(wkt.loads)
     gdf2 = geopandas.GeoDataFrame(df, geometry= df[wkt])
     return gdf or gdf2 (wiem ze tak nie mozna chyba)
-    
 '''
