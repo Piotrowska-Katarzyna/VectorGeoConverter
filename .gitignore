@@ -2,6 +2,7 @@ launch.json
 
 dane_testowe/
 
+mojetesty.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
