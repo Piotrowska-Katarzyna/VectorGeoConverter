@@ -18,8 +18,10 @@ from write_file.to_topojson import to_topojson
 valid_formats = ["shapefile", "geojson", "geopackage", "csv", "topojson", "gml"]
 valid_extensions = [".shp", ".geojson", ".gpkg", ".csv", ".topojson", ".gml"]
 
-def convert(file, target_format, x = None, y = None, wkt = None):
+def convert(file, target_format, new_filename=None, epsg=None, csv_options=None):
     filename, file_extension = os.path.splitext(file)
+    if new_filename is not None: 
+        filename = new_filename
     if file_extension in valid_extensions and target_format in valid_formats:
         if file_extension == ".shp":
             gdf = from_shp(file)
@@ -28,14 +30,21 @@ def convert(file, target_format, x = None, y = None, wkt = None):
         if file_extension == ".gpkg":
             gdf = from_geopackage(file) 
         if file_extension == ".csv":
-            if x != None and y != None:
-                gdf = from_csv(file, x, y)
-            elif wkt != None:
-                gdf = from_csv(file, wkt1 = wkt)
+            gdf = from_csv(file, csv_options)
         if file_extension == ".gml":
             gdf = from_gml(file)
         if file_extension == ".topojson":
             gdf = from_topojson(file)
+
+        if gdf.crs is not None:
+            if epsg is not None and gdf.crs != f'EPSG:{epsg}':
+                #error
+                pass
+        else: 
+            if epsg is None:
+                gdf.crs = "EPSG:4326"
+            else:
+                gdf.crs = f'EPSG:{epsg}'
 
         if target_format == "csv":
             to_csv(gdf, filename)
