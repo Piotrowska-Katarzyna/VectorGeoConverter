@@ -3,14 +3,18 @@ import geopandas as gpd
 from osgeo import ogr
 from shapely import wkt
 
-def from_csv(file, x = None, y = None, wkt1 = None):
-    df = pd.read_csv(file)
-    if x is not None and y is not None:
-        gdf = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df[x], df[y]))
-    elif wkt1 is not None:
-        df[wkt1] = df[wkt1].apply(wkt.loads)
-        gdf = gpd.GeoDataFrame(df, geometry= df[wkt1])
-    return gdf
+def from_csv(file, csv_options):
+    if csv_options is not None and isinstance(csv_options, list):
+        df = pd.read_csv(file)
+        if len(csv_options) == 1:
+            wkt_col = csv_options[0]
+            df[wkt_col] = df[wkt_col].apply(wkt.loads)
+            gdf = gpd.GeoDataFrame(df, geometry= df[wkt_col])
+        elif len(csv_options) == 2:
+            x_col = csv_options[0]
+            y_col = csv_options[1]
+            gdf = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df[x_col], df[y_col])) 
+        return gdf
 
 '''
 #tesy, pozniej je usune stąd

@@ -4,4 +4,4 @@ import os
 dir = os.getcwd()
 os.chdir(dir + "\\dane_wejsc")
 
-convert("geojson.geojson", "gml")
+convert("csv.csv", "geopackage", "testplik", csv_options=["longitude","latitude"])
