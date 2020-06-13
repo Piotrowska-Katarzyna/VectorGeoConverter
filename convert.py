@@ -15,14 +15,47 @@ from write_file.to_gml import to_gml
 from write_file.to_csv import to_csv
 from write_file.to_topojson import to_topojson
 
-valid_formats = ["shapefile", "geojson", "geopackage", "csv", "topojson", "gml"]
 valid_extensions = [".shp", ".geojson", ".gpkg", ".csv", ".topojson", ".gml"]
+valid_formats = {
+    'shapefile':'shapefile',
+    'shp':'shapefile',
+    '.shp':'shapefile',
+    'esri shapefile':'shapefile',
+    'esri':'shapefile',
+    'esri shp':'shapefile',
+    'geojson':'geojson',
+    'geo json':'geojson',
+    '.geojson':'geojson',
+    'gjson':'geojson',
+    'geopackage':'geopackage',
+    'gpkg':'geopackage',
+    '.geopackage':'geopackage',
+    '.gpkg':'geopackage',
+    'geopaczka':'geopackage',
+    'csv':'csv',
+    '.csv':'csv',
+    'comma-separated values':'csv',
+    'comma separated values': 'csv',
+    'topojson':'topojson',
+    'topo json':'topojson',
+    '.topojson':'topojson',
+    'tjson':'topojson',
+    'topology json':'topojson',
+    'gml':'gml',
+    '.gml':'gml',
+    'geography markup language':'gml'
+    }
 
-def convert(file, target_format, new_filename=None, epsg=None, csv_options=None):
+def convert(file, target_format, new_file=None, epsg=None, csv_options=None):
     filename, file_extension = os.path.splitext(file)
-    if new_filename is not None: 
-        filename = new_filename
-    if file_extension in valid_extensions and target_format in valid_formats:
+    new_dir = ''
+    if new_file is not None: 
+        new_dir, new_filename = os.path.split(new_file)
+        if isinstance(new_filename, str):
+            filename = new_filename
+        else:
+            filename = str(new_filename)
+    if file_extension in valid_extensions and target_format.lower() in valid_formats:
         if file_extension == ".shp":
             gdf = from_shp(file)
         if file_extension == ".geojson":
@@ -45,18 +78,22 @@ def convert(file, target_format, new_filename=None, epsg=None, csv_options=None)
                 gdf.crs = "EPSG:4326"
             else:
                 gdf.crs = f'EPSG:{epsg}'
+        
+        if new_dir != '':
+            os.chdir(new_dir)
 
-        if target_format == "csv":
+        target_format_validated = valid_formats.get(target_format.lower())
+        if target_format_validated == "csv":
             to_csv(gdf, filename)
-        if target_format == "geojson":
+        if target_format_validated == "geojson":
             to_geojson(gdf, filename)
-        if target_format == "geopackage":
+        if target_format_validated == "geopackage":
             to_geopackage(gdf, filename)
-        if target_format == "shapefile":
+        if target_format_validated == "shapefile":
             to_shapefile(gdf, filename)
-        if target_format == "gml":
+        if target_format_validated == "gml":
             to_gml(gdf, filename) 
-        if target_format == "topojson":
+        if target_format_validated == "topojson":
             to_topojson(gdf, filename)
 
     else:
