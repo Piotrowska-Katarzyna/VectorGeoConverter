@@ -1,7 +1,7 @@
 import geopandas as gpd 
 import os
 
-def to_shapefile(gdf, file):
+def to_shp(gdf, file):
      file_name, file_extension = os.path.splitext(file)
      if file_extension == '':
         full_file = file_name + ".shp"
