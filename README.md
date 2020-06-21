@@ -1,6 +1,6 @@
 # VectorGeoConverter
-![alt text](https://img.shields.io/github/v/release/Piotrowska-Katarzyna/VectorGeoConverter?include_prereleases)
 <!-- badges: start -->
+[![Version:v0.1](https://img.shields.io/github/v/release/Piotrowska-Katarzyna/VectorGeoConverter?include_prereleases)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
