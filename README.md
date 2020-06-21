@@ -1,4 +1,5 @@
 # VectorGeoConverter
+![alt text](https://img.shields.io/github/v/release/Piotrowska-Katarzyna/VectorGeoConverter?include_prereleases)
 <!-- badges: start -->
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
