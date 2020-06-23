@@ -13,10 +13,17 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 * [How to use](#how-to-use)
 * [Examples of use](#examples-of-use)
 * [Project status](#project-status)
+* [Annotation](#annotation)
 ## Introduction 
-This is a simple tool created for conversion vector files between different formats. 
+This is a simple function called **convert()** created for conversion vector files between different formats. Currently, it works for 6 different formats and acquire features like giving specific path for saving a new file and choosing filename for a new file. 
 #### Technologies
-Python 3.8.1 - czy wypisywać też pakiety?
+Python 3.8.1; required packages/modules:
+* geopandas
+* pandas
+* os
+* numpy
+* json
+* shapely
 #### Structure
 Convert.py file contains function convert() and this is the function that converts files. 
 Here is a structure of this function:
@@ -24,12 +31,16 @@ Here is a structure of this function:
 convert(from_file, to_format, to_file=None, epsg=None, csv_geo_columns=None)
 ```
 Parameters: 
-* from_file: str, path object or file-like object
-* to_format: str
-* to_file: str, desired path object or/and new file name, default ``None``
-* epsg: int, default ``None``
-* csv_geo_columns: list, default ``None``
-List of column names to use.
+* **from_file**: str, path object or file-like object <br />
+File one's ueses for conversion.
+* **to_format**: str <br />
+Format one's wants to convert a primary file. 
+* **to_file**: str, desired path object or/and new file name, default ``None`` <br />
+An optional argument. New name for converted file. By default, new file will be saved in the same place, where python file (in which conversion happens) currently is. For choosing a specific place on your device, additionally put in desired path in this argument. 
+* **epsg**: int, default ``None`` <br />
+An optional argument. 
+* **csv_geo_columns**: list, default ``None``<br />
+An optional argument, yet needed for converting CSV format to any other. List of column name(s) containing geometry. Works for having coordinates in two columns and WKT format.
 ## Supported formats
 Currently, function convert() works with 6 formats:
 * ESRI Shapefile
@@ -49,3 +60,6 @@ convert(from file = 'data.csv', to_format = 'gpkg', to_file = 'conv_data', epsg 
 ```
 ## Project status 
 This project is: _in progress_. Feel free to test this function and give us feedback. 
+
+## Annotation
+If you want to convert data containing information about date, most likely convert() function will change date data type to a string. Please have that in mind if dates in your data are important for further work. 
